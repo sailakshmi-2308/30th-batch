@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 
 export default function EditDoctor() {
     console.log("hello maniii")
+    console.log("helllooo divya bhaii")
  const [name,setName]=useState("sai")
     const [salary,setSalary]=useState("")
     const [age,setAge]=useState("")
