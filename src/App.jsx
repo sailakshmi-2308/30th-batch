@@ -10,6 +10,7 @@ import AddDoctor from './AddDoctor'
 import EditDoctor from './EditDoctor'
 
 export default function App() {
+  const isLogin=true
   return (
     <div>
   <BrowserRouter>
@@ -20,7 +21,10 @@ export default function App() {
     <Route path="/contact" element={<Contact/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/doctor/:id" element={<DoctorDetails/>}/>
-    <Route path="/addDoctor" element={<AddDoctor></AddDoctor>}/>
+    {/* <Route path="/addDoctor" element={<AddDoctor></AddDoctor>}/> */}
+
+
+     <Route path="/addDoctor" element={ isLogin ? <AddDoctor></AddDoctor> : <h1>Please Login First</h1>} />
     <Route path="/edit/:id" element={<EditDoctor/>}/>
   </Routes>
   </BrowserRouter>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import axios from 'axios'
 import { useState,useEffect } from 'react'
 import './Card1.css'
@@ -15,24 +15,36 @@ useEffect(()=>{
 //dependency array
 
 
-const filterDoctors= doctors.filter((doctor)=>(
+// const filterDoctors= doctors.filter((doctor)=>(
+//   doctor.name.toLowerCase().includes(search.toLowerCase())
+
+// ))
+
+const filterDoctors=useMemo(()=>{
+return doctors.filter((doctor)=>(
   doctor.name.toLowerCase().includes(search.toLowerCase())
 
 ))
+},[search,doctors])
+
 
   
 //get data
-function loadData(){
-    axios.get("https://doc-back.onrender.com/doctors")
-    .then((result)=>{
+async function loadData(){
+    try{
+      const result= await axios.get("https://doc-back.onrender.com/doctors")
+  
       console.log(result)
         console.log(result.data);
         setDoctors(result.data)
   
-    })
-
+    }catch(error){
+      console.log(error)
+    }
+    
 }
 // console.log(doctors)
+console.log("aravindh")
 
 function handleSearch(e){
   console.log(e.target.value);
