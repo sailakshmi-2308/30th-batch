@@ -8,9 +8,10 @@ import Navbar from './Navbar'
 import DoctorDetails from './DoctorDetails'
 import AddDoctor from './AddDoctor'
 import EditDoctor from './EditDoctor'
+import ProtectRoute from './ProtectRoute'
 
 export default function App() {
-  const isLogin=true
+  const isLogin=localStorage.getItem("isLogin")
   return (
     <div>
   <BrowserRouter>
@@ -24,8 +25,19 @@ export default function App() {
     {/* <Route path="/addDoctor" element={<AddDoctor></AddDoctor>}/> */}
 
 
-     <Route path="/addDoctor" element={ isLogin ? <AddDoctor></AddDoctor> : <h1>Please Login First</h1>} />
-    <Route path="/edit/:id" element={<EditDoctor/>}/>
+     {/* <Route path="/addDoctor" element={ isLogin ? <AddDoctor></AddDoctor> : <h1>Please Login First</h1>} /> */}
+     
+     
+     <Route path="/addDoctor" element={
+
+<ProtectRoute isLogin={isLogin}>
+  <AddDoctor></AddDoctor>
+</ProtectRoute>
+
+     }/>
+    
+    <Route path="/edit/:id" element={<EditDoctor></EditDoctor>}/>
+
   </Routes>
   </BrowserRouter>
 

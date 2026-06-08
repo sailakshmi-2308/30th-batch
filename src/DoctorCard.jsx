@@ -13,6 +13,7 @@ export default function DoctorCard(props) {
       <button onClick={()=>navigate(`/doctor/${props.id}`)}>ViewDetails</button>
       <button onClick={()=>{props.deleteDoctor(props.id)}}>Delete</button>
       <button onClick={()=>{navigate(`/edit/${props.id}`)}}>Update</button>
+  
     </div>
   )
 }
